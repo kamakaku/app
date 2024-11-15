@@ -13,6 +13,16 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true
+    sourcemap: true,
+    chunkSizeWarningLimit: 2000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'firebase'],
+          ui: ['antd', '@ant-design/icons'],
+          pdf: ['react-pdf', 'pdfjs-dist']
+        }
+      }
+    }
   }
 });
