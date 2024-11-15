@@ -15,12 +15,15 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: true,
     chunkSizeWarningLimit: 2000,
+    commonjsOptions: {
+      include: [/node_modules/],
+      transformMixedEsModules: true
+    },
     rollupOptions: {
+      external: ['firebase/app'],
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom', 'firebase'],
-          ui: ['antd', '@ant-design/icons'],
-          pdf: ['react-pdf', 'pdfjs-dist']
+          firebase: ['firebase/app', 'firebase/auth', 'firebase/firestore', 'firebase/functions']
         }
       }
     }
